@@ -37,7 +37,7 @@ async function progress(message) {
 document.on("DOMContentLoaded", async (e) => {
     console.log(e);
 
-    const ISSUER = "https://trusttoken.dev/";
+    const ISSUER = "https://trusttoken.dev";
 
     async function verify_human(e) {
         e.preventDefault();
@@ -61,7 +61,7 @@ document.on("DOMContentLoaded", async (e) => {
                 await progress("#redemption");
 
                 // redemption request
-                const res = await fetch(`${ISSUER}/private-state-token/redemption`, {
+                const res = await fetch(`${ISSUER}/tt/r`, {
                     privateToken: {
                         version: 1,
                         operation: "token-redemption",
@@ -78,7 +78,7 @@ document.on("DOMContentLoaded", async (e) => {
             await progress("#verify");
 
             // send RR and echo Sec-Redemption-Record
-            const res = await fetch("/private-state-token/send-rr", {
+            const res = await fetch("/tt/echo", {
                 privateToken: {
                     version: 1,
                     operation: "send-redemption-record",
